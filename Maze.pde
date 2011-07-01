@@ -7,22 +7,20 @@ class Maze
 {  
   // Properties
   // ----------
-  ArrayList cells;
-
+  
+  int[][] grid;
+  
+  int N = unbinary("00000001");
+  int O = unbinary("00000010");
+  int S = unbinary("00000100");
+  int W = unbinary("00001000");
+ 
   
   // Constructor and maze generation
   // -------------------------------
   Maze(int cols, int rows)
   {
-    cells = new ArrayList();
-    
-    for (int r = 0; r < rows; r++)
-    {
-      for (int c = 0; c < cols; c++)
-      {
-        cells.add(new MazeCell(r, c));
-      }
-    }
+    grid = new int[rows][cols];
   }
   
   
@@ -30,10 +28,6 @@ class Maze
   // --------------
   void draw(int cellSize)
   {
-    for (int i = 0; i < cells.size(); i++)
-    {
-      MazeCell cell = (MazeCell) cells.get(i);
-      cell.draw(cellSize);
-    }
+
   }
 }
