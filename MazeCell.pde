@@ -1,18 +1,27 @@
 /*
-    Cell
+    MazeCell
     ©2011, Thomas Feldmann
 */
 
 class MazeCell
 {
-  int x, y;
+  // Properties
+  // ----------
+  int x;
+  int y;
   
+  
+  // Constructor
+  // -----------
   MazeCell(int x, int y)
   {
     this.x = x;
     this.y = y;
   }
   
+  
+  // Drawing
+  // -------
   void draw(int cellSize)
   {
     ellipse(x * cellSize, y * cellSize, cellSize, cellSize);

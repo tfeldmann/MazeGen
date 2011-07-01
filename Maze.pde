@@ -5,8 +5,13 @@
  
 class Maze
 {  
+  // Properties
+  // ----------
   ArrayList cells;
 
+  
+  // Constructor and maze generation
+  // -------------------------------
   Maze(int cols, int rows)
   {
     cells = new ArrayList();
@@ -20,6 +25,9 @@ class Maze
     }
   }
   
+  
+  // Drawing Method
+  // --------------
   void draw(int cellSize)
   {
     for (int i = 0; i < cells.size(); i++)
