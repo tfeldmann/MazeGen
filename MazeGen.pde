@@ -1,18 +1,25 @@
-// Labyrinth Generator
-// ©2011, Thomas Feldmann
-// ----------------------
+/*
+    Labyrinth Generator
+    ©2011, Thomas Feldmann
+*/
 
-int HOEHE  = 20;
-int BREITE = 20;
+// Settings
+// --------
+int ROWS      = 20;
+int COLS      = 20;
+int CELL_SIZE = 15;
+Maze maze;
 
 void setup()
 {
-  size(HOEHE*20, BREITE*20);
+  size(COLS * CELL_SIZE, ROWS * CELL_SIZE);
   smooth();
-  print("Test!");
+  noLoop();
+  
+  maze = new Maze(COLS, ROWS);
 }
 
 void draw()
 {
-  ellipse(10,10,20,20);
+  maze.draw(CELL_SIZE);
 }
