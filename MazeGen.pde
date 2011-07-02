@@ -5,8 +5,8 @@
 
 // Settings
 // --------
-int ROWS      = 20;
-int COLS      = 20;
+int ROWS      = 5;
+int COLS      = 5;
 int CELL_SIZE = 15;
 Maze maze;
 

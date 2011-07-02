@@ -1,70 +1,114 @@
 /*
     Maze
     ©2011, Thomas Feldmann
-*/
- 
+ */
+
 class Maze
 {  
   // Properties
   // ----------
-  ArrayList cells;
+  int rows, cols;
   int[][] grid;
   
-  int N = unbinary("00000001");
-  int O = unbinary("00000010");
-  int S = unbinary("00000100");
-  int W = unbinary("00001000");
- 
-  
+  int dir[] = {
+    unbinary("00000001"), // North
+    unbinary("00000010"), // East
+    unbinary("00000100"), // South
+    unbinary("00001000")  // West
+  };
+    
+  int opposite[] = {
+    unbinary("00000100"), // South
+    unbinary("00001000"), // West
+    unbinary("00000001"), // North
+    unbinary("00000010")  // East
+  };
+
+  int dx[] = {0, 1, 0, -1};
+  int dy[] = {1, 0, -1, 0};
+
+
   // Constructor and maze generation
   // -------------------------------
   Maze(int cols, int rows)
   {
+    // variables
+    // ---------
+    this.rows = rows;
+    this.cols = cols;
+    ArrayList cells;
+
     cells = new ArrayList();
     grid  = new int[rows][cols];
-    
+
+
     // starting point
+    // --------------
     cells.add(new MazeCell(0, 0));
-    
+
     // growing tree algorithm
     while (cells.size() > 0)
-    {
+    {      
       // backtrack to newest cell
       int index = cells.size() - 1;
       MazeCell cell = (MazeCell) cells.get(index);
       int x = cell.x;
       int y = cell.y;
-      
+
       // select a neighbour
-      int nx = x + (-1 + int(random(2)) * 2);
-      int ny = y + (-1 + int(random(2)) * 2);
-      
-      if (nx >= 0 && ny >= 0 && nx < cols && ny < rows && grid[ny][nx] == 0)
+      int nDir = 4;
+      Integer[] possibleDirections = new Integer[nDir];
+      for (int i = 0; i < possibleDirections.length; i++)
       {
-        // TODO: Continue working on the algorithm here,
-        // it doesn't work.
-/*      
-        grid[y][x] |= dir;
-        grid[ny][nx] |= OPPOSITE[dir]
-        cells.add(new MazeCell(nx, ny));
-        index = -1;
-        break;
-*/
+        possibleDirections[i] = new Integer(i);
+      }
+      java.util.Collections.shuffle(java.util.Arrays.asList(possibleDirections));
+      
+      for (int i = 0; i < possibleDirections.length; i++)
+      {
+        int directionIndex = int(possibleDirections[i]);
+        int nx = x + dx[directionIndex];
+        int ny = y + dy[directionIndex];
+      
+        if (nx >= 0 && ny >= 0 && nx < cols && ny < rows && grid[ny][nx] == 0)
+        {
+           grid[y][x] |= dir[directionIndex];
+           grid[ny][nx] |= opposite[directionIndex];
+           cells.add(new MazeCell(nx, ny));
+           index = -1;
+           break;
+        }
       }
       
-      index = 0; // Remoxe after uncommenting the above
+      // remove cell from list if there are no
+      // unused neighbour cells
       if (index != -1)
       { 
         cells.remove(index);
       }
+      
     }
   }
-  
-  
+
+
   // Drawing Method
   // --------------
   void draw(int cellSize)
   {
-    ellipse(100, 100, cellSize, cellSize);
+    for (int y = 0; y < rows; y++)
+    {
+      for (int x = 0; x < cols; x++)
+      {
+        if ((grid[x][y] & dir[0]) == 0)
+          line(x * cellSize, y * cellSize, (x+1) * cellSize, y * cellSize);
+        if ((grid[x][y] & dir[1]) == 0)
+          line((x+1) * cellSize, y * cellSize, (x+1) * cellSize, (y+1) * cellSize);
+        if ((grid[x][y] & dir[2]) == 0)
+          line(x * cellSize, (y+1) * cellSize, (x+1) * cellSize, (y+1) * cellSize);
+        if ((grid[x][y] & dir[3]) == 0)
+          line(x * cellSize, y * cellSize, x * cellSize, (y+1) * cellSize);
+      }
+    }
   }
 }
+
