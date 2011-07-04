@@ -5,16 +5,19 @@
 
 // Settings
 // --------
-int ROWS      = 40;
-int COLS      = 80;
-int CELL_SIZE = 10;
+int ROWS      = 20;
+int COLS      = 20;
+int CELL_SIZE = 15;
+
+
 Maze maze;
 
 void setup()
 {
-  size(COLS * CELL_SIZE +1, ROWS * CELL_SIZE +1);
+  size(COLS * CELL_SIZE + 1, ROWS * CELL_SIZE + 1);
   background(255, 255, 255);
   smooth();
+  
   noLoop();
   
   maze = new Maze(COLS, ROWS);
