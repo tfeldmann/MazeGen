@@ -117,11 +117,14 @@ class Maze
           
         stroke(255, 255, 255);
         if ((grid[x][y] & dir[0]) > 0)
-          line(x * cellSize, y * cellSize, (x+1) * cellSize, y * cellSize);
+          line(x * cellSize, (y+1) * cellSize, (x+1) * cellSize, (y+1) * cellSize);
+          
         if ((grid[x][y] & dir[1]) > 0)
           line((x+1) * cellSize, y * cellSize, (x+1) * cellSize, (y+1) * cellSize);
+          
         if ((grid[x][y] & dir[2]) > 0)
-          line(x * cellSize, (y+1) * cellSize, (x+1) * cellSize, (y+1) * cellSize);
+          line(x * cellSize, y * cellSize, (x+1) * cellSize, y * cellSize);
+          
         if ((grid[x][y] & dir[3]) > 0)
           line(x * cellSize, y * cellSize, x * cellSize, (y+1) * cellSize);
       }
