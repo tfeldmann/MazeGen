@@ -50,6 +50,7 @@ class Maze
     // ----------------------------
     while (cells.size() > 0)
     {      
+      
       // backtrack to newest cell
       // ------------------------
       int index = cells.size() - 1;
@@ -57,40 +58,46 @@ class Maze
       int x = cell.x;
       int y = cell.y;
 
-      // select a neighbour
-      int nDir = 4;
-      Integer[] possibleDirections = new Integer[nDir];
-      for (int i = 0; i < possibleDirections.length; i++)
+
+      // shuffle possible directions
+      // ---------------------------
+      Integer[] directions = new Integer[4];
+      for (int i = 0; i < directions.length; i++)
       {
-        possibleDirections[i] = new Integer(i);
+        directions[i] = new Integer(i);
       }
-      java.util.Collections.shuffle(java.util.Arrays.asList(possibleDirections));
+      java.util.Collections.shuffle(java.util.Arrays.asList(directions));
       
-      for (int i = 0; i < possibleDirections.length; i++)
+      
+      // try visiting neighbour cells
+      // ----------------------------
+      for (int i = 0; i < directions.length; i++)
       {
-        int directionIndex = int(possibleDirections[i]);
-        int nx = x + dx[directionIndex];
-        int ny = y + dy[directionIndex];
+        int selDir = int(directions[i]);
+        int nx = x + dx[selDir];
+        int ny = y + dy[selDir];
         
-      
+        
+        // if new cell is unvisited carve passage
+        // --------------------------------------
         if (nx >= 0 && ny >= 0 && nx < cols && ny < rows && grid[nx][ny] == 0)
         {
-           grid[x][y]   |= dir[directionIndex];
-           grid[nx][ny] |= opposite[directionIndex];
+           grid[x][y]   |= dir[selDir];
+           grid[nx][ny] |= opposite[selDir];
            cells.add(new MazeCell(nx, ny));
            index = -1;
            break;
         }
       }
       
-      // remove cell from list if there are no
-      // unused neighbour cells
+      // dead end: remove cell from list
+      // -------------------------------
       if (index != -1)
       { 
         cells.remove(index);
       }
-      
     }
+    
   }
 
 
