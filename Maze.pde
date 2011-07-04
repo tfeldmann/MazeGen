@@ -24,8 +24,8 @@ class Maze
     unbinary("0010")  // East
   };
 
-  int dx[] = {0, 1, 0, -1};
-  int dy[] = {1, 0, -1, 0};
+  int dx[] = {0, 1,  0, -1};
+  int dy[] = {1, 0, -1,  0};
 
 
   // Constructor and maze generation
@@ -105,27 +105,35 @@ class Maze
   // --------------
   void draw(int cellSize)
   {
+    
+    // draw line when no passage is carved
+    // -----------------------------------
     for (int y = 0; y < rows; y++)
     {
       for (int x = 0; x < cols; x++)
       {
         // north
         if ((grid[x][y] & dir[0]) == 0)
-          line(x * cellSize, (y+1) * cellSize, (x+1) * cellSize, (y+1) * cellSize);
+          line(x * cellSize, (y+1) * cellSize,
+               (x+1) * cellSize, (y+1) * cellSize);
           
         // east
         if ((grid[x][y] & dir[1]) == 0)
-          line((x+1) * cellSize, y * cellSize, (x+1) * cellSize, (y+1) * cellSize);
+          line((x+1) * cellSize, y * cellSize,
+               (x+1) * cellSize, (y+1) * cellSize);
         
         // south
         if ((grid[x][y] & dir[2]) == 0)
-          line(x * cellSize, y * cellSize, (x+1) * cellSize, y * cellSize);
+          line(x * cellSize, y * cellSize,
+               (x+1) * cellSize, y * cellSize);
           
         // west
         if ((grid[x][y] & dir[3]) == 0)
-          line(x * cellSize, y * cellSize, x * cellSize, (y+1) * cellSize);
+          line(x * cellSize, y * cellSize,
+               x * cellSize, (y+1) * cellSize);
       }
     }
+    
   }
   
 }

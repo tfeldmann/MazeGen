@@ -1,5 +1,5 @@
 /*
-    Labyrinth Generator
+    MazeGen
     ©2011, Thomas Feldmann
 */
 
@@ -22,6 +22,7 @@ void setup()
   
   maze = new Maze(COLS, ROWS);
 }
+
 
 void draw()
 {
