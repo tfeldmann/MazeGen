@@ -1,6 +1,6 @@
 #Maze Generator
 ===============
 
-Written in Processing.
+Maze generator, written in Processing.
 
 ©2011, Thomas Feldmann
