@@ -18,4 +18,5 @@ class MazeCell
     this.x = x;
     this.y = y;
   }
+  
 }
