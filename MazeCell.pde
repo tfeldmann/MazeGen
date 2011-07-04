@@ -18,12 +18,4 @@ class MazeCell
     this.x = x;
     this.y = y;
   }
-  
-  
-  // Drawing
-  // -------
-  void draw(int cellSize)
-  {
-    ellipse(x * cellSize, y * cellSize, cellSize, cellSize);
-  }
 }
