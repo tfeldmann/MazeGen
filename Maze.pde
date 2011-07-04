@@ -1,7 +1,7 @@
 /*
     Maze
     ©2011, Thomas Feldmann
- */
+*/
 
 class Maze
 {  

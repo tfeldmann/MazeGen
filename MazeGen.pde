@@ -1,7 +1,7 @@
 /*
     MazeGen
     ©2011, Thomas Feldmann
- */
+*/
 
 // Settings
 // --------

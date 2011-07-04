@@ -1,7 +1,7 @@
 /*
     MazeCell
     ©2011, Thomas Feldmann
- */
+*/
 
 class MazeCell
 {
