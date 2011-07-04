@@ -12,7 +12,7 @@ Maze maze;
 
 void setup()
 {
-  size(COLS * CELL_SIZE, ROWS * CELL_SIZE);
+  size(COLS * CELL_SIZE +1, ROWS * CELL_SIZE +1);
   background(255, 255, 255);
   smooth();
   noLoop();
